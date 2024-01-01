@@ -1,0 +1,62 @@
+<!-- Resenha.xhtml -->
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <title>Resenha do Livro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 300px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Resenha do Livro</h1>
+</header>
+
+<section>
+    <img th:src="@{'/carregarImagem?id=' + ${livro.id}}" alt="Capa do Livro">
+
+
+    <p th:text="${livro.resenha}">
+        <!-- Exibe dinamicamente a resenha do livro -->
+        Resenha do livro: <span th:text="${livro.titulo}"></span>.
+        Esta é uma descrição detalhada sobre o enredo, personagens e aspectos interessantes da obra.
+        Certifique-se de personalizar este texto com a resenha real do livro armazenada no banco de dados.
+    </p>
+</section>
+
+</body>
+</html>
