@@ -28,9 +28,6 @@ public class ResenhaController {
 	
 	
 	
-	
-
-	
 
 	@GetMapping("/resenha.html")
 	public String exibirResenha(@RequestParam Long livroId, Model model) {

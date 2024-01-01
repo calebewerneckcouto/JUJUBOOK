@@ -47,9 +47,8 @@
 </header>
 
 <section>
-    <img th:src="@{'/carregarImagem?id=' + ${livro.id}}" alt="Capa do Livro">
-
-
+   
+<img th:src="'data:image/jpeg;base64,' + ${livro.miniaturaBase64}" alt="Miniatura">
     <p th:text="${livro.resenha}">
         <!-- Exibe dinamicamente a resenha do livro -->
         Resenha do livro: <span th:text="${livro.titulo}"></span>.
