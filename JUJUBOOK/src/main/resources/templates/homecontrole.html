@@ -7,6 +7,23 @@
     <title>Cadastro de Livros</title>
     <style>
     
+     nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+    
     /* Estilo para a tabela */
 table {
     width: 100%;
@@ -114,6 +131,16 @@ tfoot {
     </style>
 </head>
 <body>
+
+<nav>
+        <ul>
+            <li><a th:href="@{/}" style="color: white;">Home</a></li>
+            <li><a th:href="@{/biografia}" style="color: white;">Biografia</a></li>
+            <li><a th:href="@{/login}" style="color: white;">Login</a></li>
+            
+            <li><a th:href="@{/onde-comprar}" style="color: white;">Onde Comprar</a></li>
+        </ul>
+    </nav>
 
 <header>
     <h1>Cadastro de Livros</h1>
