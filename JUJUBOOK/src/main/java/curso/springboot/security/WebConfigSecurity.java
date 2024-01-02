@@ -20,26 +20,24 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private ImplementacaoUserDetailsService implementacaoUserDetailsService;
 	
-	@Override // Configura as solicitações de acesso por Http
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf()
-		.disable() // Desativa as configurações padrão de memória.
-		.authorizeRequests() // Pertimi restringir acessos
-		.antMatchers(HttpMethod.GET, "/","/index").permitAll() // Qualquer usuário acessa a pagina inicial
-		.antMatchers(HttpMethod.GET, "/homecontrole").hasAnyRole("ADMIN","USER")
-		.anyRequest().authenticated()
-		.and().formLogin().permitAll()// permite qualquer usuário
-        .loginPage("/login")
-        .defaultSuccessUrl("/homecontrole")
-        .failureUrl("/login?error=true")
-        .and()
-        .logout().logoutSuccessUrl("/login")
-		// Mapeia URL de Logout e invalida usuário autenticado
-		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
-		
+	    http.csrf().disable() // Desativa as configurações padrão de memória.
+	        .authorizeRequests() // Permite restringir acessos
+	            .antMatchers(HttpMethod.GET, "/", "/index", "/resenha", "/biografia").permitAll() // Qualquer usuário acessa a página inicial
+	            .antMatchers(HttpMethod.GET, "/homecontrole").hasAnyRole("ADMIN", "USER")
+	            .anyRequest().authenticated()
+	            .and()
+	        .formLogin().permitAll() // Permite qualquer usuário
+	            .loginPage("/login")
+	            .defaultSuccessUrl("/homecontrole")
+	            .failureUrl("/login?error=true")
+	            .and()
+	        .logout()
+	            .logoutSuccessUrl("/login") // Mapeia URL de Logout e invalida usuário autenticado
+	            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 	}
-	
-	
+
 	@Override // Cria autenticação do usuário com banco de dados ou em memória
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		

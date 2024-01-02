@@ -32,11 +32,14 @@ public class BiografiaController {
     }
     
     @PostMapping("/delete-foto/{fotoId}")
-    public String deletarFoto(@PathVariable Long fotoId, Model model) {
+    public String deletarFoto(@PathVariable Long fotoId, Model model,RedirectAttributes redirectAttributes) {
         // Verifica se a foto com o ID especificado existe
         if (fotoRepository.existsById(fotoId)) {
             // Lógica para deletar a foto com o ID especificado
             fotoRepository.deleteById(fotoId);
+            
+         // Adiciona uma mensagem de sucesso
+            redirectAttributes.addFlashAttribute("mensagem", "Foto deletada com Sucesso!");
         }
 
         // Obtém a lista atualizada de fotos para exibir na página
@@ -49,10 +52,14 @@ public class BiografiaController {
 
     @GetMapping("/fotobiografia")
     public String fotobiografia(Model model) {
-        // Obtém a lista de fotos da biografia para exibir na página
+       boolean hasPhotos = fotoRepository.existsBy();
+       model.addAttribute("hasPhotos", hasPhotos);
         model.addAttribute("fotos", fotoRepository.findAll());
         return "fotobiografia";
     }
+    
+    
+   
 
     @PostMapping("/upload")
     public String upload(FotoBiografia fotoBiografia, @RequestParam("foto") MultipartFile imagem, RedirectAttributes redirectAttributes) {

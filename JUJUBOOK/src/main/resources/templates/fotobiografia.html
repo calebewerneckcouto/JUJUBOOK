@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload de Imagem</title>
     <style>
+    .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px;
+            width: 300px;
+            text-align: center;
+            background-color: #007bff; /* Azul do Bootstrap */
+            color: white;
+            border-radius: 5px;
+            display: none; /* Oculta inicialmente */
+        }
     
      nav {
             background-color: #333;
@@ -69,6 +84,9 @@
         }
     </style>
 </head>
+
+
+
 <body>
 
 <nav>
@@ -78,7 +96,7 @@
             <li><a th:href="@{/login}" style="color: white;">Login</a></li>
              <li><a th:href="@{/homecontrole}" style="color: white;">Cadastro de Livros</a></li>
               <li><a th:href="@{/fotobiografia}" style="color: white;">Foto da Biografia</a></li>
-            <li><a th:href="@{/onde-comprar}" style="color: white;">Onde Comprar</a></li>
+           
         </ul>
     </nav>
 
@@ -86,10 +104,19 @@
     <h1>Foto da Biografia</h1>
 </header>
 
-<form action="/upload" method="post" enctype="multipart/form-data">
+
+<!-- Adicione este trecho de código em sua página Thymeleaf para exibir mensagens -->
+<div th:if="${not #strings.isEmpty(mensagem)}" class="alert alert-success" role="alert">
+    <p th:text="${mensagem}"></p>
+</div>
+<div th:if="${not #strings.isEmpty(erro)}" class="alert alert-danger" role="alert">
+    <p th:text="${erro}"></p>
+</div>
+
+<form action="/jujubook/upload" method="post" enctype="multipart/form-data">
     <label for="foto">Escolha uma imagem:</label>
     <input type="file" id="foto" name="foto" accept="image/*">
-    <button type="submit">Enviar</button>
+   <button type="submit" th:disabled="${hasPhotos}">Enviar</button>
 </form>
 
 </body>

@@ -139,7 +139,7 @@ tfoot {
             <li><a th:href="@{/login}" style="color: white;">Login</a></li>
              <li><a th:href="@{/homecontrole}" style="color: white;">Cadastro de Livros</a></li>
               <li><a th:href="@{/fotobiografia}" style="color: white;">Foto da Biografia</a></li>
-            <li><a th:href="@{/onde-comprar}" style="color: white;">Onde Comprar</a></li>
+            
         </ul>
     </nav>
 
@@ -147,7 +147,7 @@ tfoot {
     <h1>Cadastro de Livros</h1>
 </header>
 
-<form action="/salvarLivro" method="post" enctype="multipart/form-data">
+<form action="/jujubook/salvarLivro" method="post" enctype="multipart/form-data">
     <label for="titulo">Título:</label>
     <input type="text" id="titulo" name="titulo" required>
 
