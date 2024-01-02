@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload de Imagem</title>
+    <style>
+    
+     nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+    
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        form {
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="file"] {
+            margin-bottom: 16px;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+        <ul>
+            <li><a th:href="@{/}" style="color: white;">Home</a></li>
+            <li><a th:href="@{/biografia}" style="color: white;">Biografia</a></li>
+            <li><a th:href="@{/login}" style="color: white;">Login</a></li>
+             <li><a th:href="@{/homecontrole}" style="color: white;">Cadastro de Livros</a></li>
+              <li><a th:href="@{/fotobiografia}" style="color: white;">Foto da Biografia</a></li>
+            <li><a th:href="@{/onde-comprar}" style="color: white;">Onde Comprar</a></li>
+        </ul>
+    </nav>
+
+<header>
+    <h1>Foto da Biografia</h1>
+</header>
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <label for="foto">Escolha uma imagem:</label>
+    <input type="file" id="foto" name="foto" accept="image/*">
+    <button type="submit">Enviar</button>
+</form>
+
+</body>
+ <table>
+        <thead>
+            <tr>
+              
+                <th>Imagem</th>
+                <th>Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="foto : ${fotos}">
+                
+                       <td>
+                        <img th:src="'data:image/jpeg;base64,' + ${foto.miniaturaBase64}" alt="Miniatura">
+                    
+                </td>
+                
+                 <td>
+            <form th:action="@{'/delete-foto/' + ${foto.id}}" method="post">
+                <button type="submit">Excluir</button>
+            </form>
+             </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
