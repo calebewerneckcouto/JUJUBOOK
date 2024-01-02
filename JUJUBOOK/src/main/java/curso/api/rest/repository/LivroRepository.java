@@ -10,5 +10,6 @@ import curso.api.rest.model.Livro;
 public interface LivroRepository extends JpaRepository<Livro, Long> {
     List<Livro> findAll();
     Optional<Livro> findById(Long id);
+   
     
 }

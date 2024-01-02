@@ -33,6 +33,8 @@
 
         h1 {
             color: #333;
+            text-align: center; /* Centraliza o título */
+            margin-top: 20px; /* Adiciona um espaço acima do título */
         }
 
         table {
@@ -74,6 +76,8 @@
             text-decoration: none;
         }
     </style>
+    
+   
 </head>
 
 <body>
@@ -83,10 +87,11 @@
             <li><a th:href="@{/}" style="color: white;">Home</a></li>
             <li><a th:href="@{/biografia}" style="color: white;">Biografia</a></li>
             <li><a th:href="@{/login}" style="color: white;">Login</a></li>
-            <li><a th:href="@{/resenhas}" style="color: white;">Resenhas</a></li>
             <li><a th:href="@{/onde-comprar}" style="color: white;">Onde Comprar</a></li>
         </ul>
     </nav>
+
+    <h1>Resenha do Livro</h1>
 
     <table>
         <tr>

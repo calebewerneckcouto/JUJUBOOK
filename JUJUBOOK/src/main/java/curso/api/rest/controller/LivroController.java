@@ -8,6 +8,7 @@ import java.util.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,14 +26,23 @@ public class LivroController {
 
     
     
-    
+    @PostMapping("/delete/{livroId}")
+    public String deletarLivro(@PathVariable Long livroId) {
+        // Lógica para deletar o livro com o ID especificado
+    	 livroRepository.deleteById(livroId);
+    	livroRepository.findAll();
+
+        // Redireciona de volta para a página que exibe a lista de livros
+        return "redirect:/homecontrole";
+    }
     
     
    
     
     
     @RequestMapping("/homecontrole")
-    public String homecontrole() {
+    public String homecontrole(Model model) {
+    	 model.addAttribute("livros", livroRepository.findAll());
         return "homecontrole";
     }
 
