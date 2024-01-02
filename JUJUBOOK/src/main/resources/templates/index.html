@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -49,10 +49,15 @@
             color: white;
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+        }
+
+        td.valor {
+            color: blue; /* Cor azul para a classe 'valor' */
         }
 
         tbody tr:hover {
@@ -66,43 +71,42 @@
     </style>
 </head>
 
-
 <body>
 
-<nav>
-    <ul>
-        <li><a th:href="@{/}" style="color: white;">Home</a></li>
-        <li><a th:href="@{/biografia}" style="color: white;">Biografia</a></li>
-        <li><a th:href="@{/login}" style="color: white;">Login</a></li>
-        <li><a th:href="@{/resenhas}" style="color: white;">Resenhas</a></li>
-        <li><a th:href="@{/onde-comprar}" style="color: white;">Onde Comprar</a></li>
-    </ul>
-</nav>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}" style="color: white;">Home</a></li>
+            <li><a th:href="@{/biografia}" style="color: white;">Biografia</a></li>
+            <li><a th:href="@{/login}" style="color: white;">Login</a></li>
+            <li><a th:href="@{/resenhas}" style="color: white;">Resenhas</a></li>
+            <li><a th:href="@{/onde-comprar}" style="color: white;">Onde Comprar</a></li>
+        </ul>
+    </nav>
 
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Imagem</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="livro : ${livros}">
+                <td th:text="${livro.titulo}"></td>
+                <td th:text="${livro.descricao}"></td>
+                <td th:text="'R$ ' + ${livro.valor}" class="valor"></td>
+                <td>
+                    <!-- Adiciona um link para a página resenha.html com parâmetros (exemplo: livroId) -->
+                    <a th:href="'/resenha.html?livroId=' + ${livro.id}">
+                        <!-- Exibe a miniatura da imagem em base64 -->
+                        <img th:src="'data:image/jpeg;base64,' + ${livro.miniaturaBase64}" alt="Miniatura">
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
 
-
-<table>
-    <thead>
-        <tr>
-            <th>Título</th>
-            <th>Descrição</th>
-            <th>Valor</th>
-            <th>Imagem</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="livro : ${livros}">
-            <td th:text="${livro.titulo}"></td>
-            <td th:text="${livro.descricao}"></td>
-            <td th:text="'R$ ' + ${livro.valor}"></td>
-            <td>
-    <!-- Adiciona um link para a página resenha.html com parâmetros (exemplo: livroId) -->
-    <a th:href="'/resenha.html?livroId=' + ${livro.id}">
-        <!-- Exibe a miniatura da imagem em base64 -->
-        <img th:src="'data:image/jpeg;base64,' + ${livro.miniaturaBase64}" alt="Miniatura">
-    </a>
-</td>
-
-        </tr>
-    </tbody>
-</table>
+</html>
