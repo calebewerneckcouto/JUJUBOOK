@@ -7,7 +7,7 @@
 	<groupId>curso.springboot</groupId>
 	<artifactId>springboot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>springboot</name>
 	<description>Demo project for Spring Boot</description>
@@ -85,11 +85,7 @@
 			<version>2.0.3.RELEASE</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>9.4.1212</version>
-		</dependency>
+		
 		
 
 
@@ -113,7 +109,11 @@
 		
 		
 		
-
+<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 
 
 		

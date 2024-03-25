@@ -77,7 +77,7 @@
         <ul>
             <li><a th:href="@{/}" style="color: white;">Home</a></li>
             <li><a th:href="@{/biografia}" style="color: white;">Biografia</a></li>
-            <li><a th:href="@{/login}" style="color: white;">Login</a></li>
+                <li><a th:href="@{/homecontrole}" style="color: white;">Controle</a></li>
             
            
         </ul>
@@ -99,7 +99,7 @@
                 <td th:text="'R$ ' + ${livro.valor}" class="valor"></td>
                 <td>
                     <!-- Adiciona um link para a página resenha.html com parâmetros (exemplo: livroId) -->
-                    <a th:href="'/jujubook/resenha.html?livroId=' + ${livro.id}">
+                    <a th:href="'resenha.html?livroId=' + ${livro.id}">
                         <!-- Exibe a miniatura da imagem em base64 -->
                         <img th:src="'data:image/jpeg;base64,' + ${livro.miniaturaBase64}" alt="Miniatura">
                     </a>
